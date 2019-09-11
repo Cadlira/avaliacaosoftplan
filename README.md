@@ -1,7 +1,3 @@
-[TOCM]
-
-[TOC]
-
 ___
 # Avaliação Softplan
 Este projeto tem como finalidade implementar as soluções aos exercícios propostos pela equipe da Softplan para o seu processo seletivo.
@@ -56,3 +52,4 @@ if (!CollectionUtils.isEmpty(lista))  {
 - Finalizada a regra de negócio, é necessário implementar a regra do strategy, a fim de selecionar a lógica utilizada. Desta forma, foi criada a classe de teste `RelatorioServiceTest`. Diferente dos testes das classes `GeradorObservacao.java` e `GeradorObservacaoV2.java`, essa classe de testes não utilizará mock, pois será utilizado as facilidades de injeção de dependência do Spring para implementar o padrão strategy.
 - Finalizando a implementação desse exercício construi uma classe de *testSuite* para o exercício 1 `br.com.softplan.avaliacao.exercicio1.Exercicio1TestSuite.java` e executando a mesmo foi retornado um valor de cobertura de 97,3%, conforme imagem abaixo:
 ![](https://i.imgur.com/iZEnjEo.jpg)
+- O código do exercício 1 encontra-se no repositório compartilhado com vocês na branch ***exercicio1***. O código dos dois exercícios estaram implementado na branch ***master***.
