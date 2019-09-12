@@ -52,7 +52,7 @@ if (!CollectionUtils.isEmpty(lista))  {
 - Finalizada a regra de negócio, é necessário implementar a regra do strategy, a fim de selecionar a lógica utilizada. Desta forma, foi criada a classe de teste `RelatorioServiceTest`. Diferente dos testes das classes `GeradorObservacao.java` e `GeradorObservacaoV2.java`, essa classe de testes não utilizará mock, pois será utilizado as facilidades de injeção de dependência do Spring para implementar o padrão strategy.
 - Finalizando a implementação desse exercício construi uma classe de *testSuite* para o exercício 1 `br.com.softplan.avaliacao.exercicio1.Exercicio1TestSuite.java` e executando a mesmo foi retornado um valor de cobertura de 97,3%, conforme imagem abaixo:
 ![](https://i.imgur.com/iZEnjEo.jpg)
-- O código do exercício 1 encontra-se no repositório compartilhado com vocês na branch ***exercicio1***. O código dos dois exercícios estaram implementado na branch ***master***.
+- O código do exercício 1 encontra-se no repositório compartilhado com vocês na branch ***exercicio1***. O código dos dois exercícios estaram implementado na branch  ***master***.
 
 -----
 ##### Exercício 2
@@ -65,6 +65,45 @@ Normalmente seria criado um DTO responsável pela conversão do JSON para java n
 Levantado as pré condições, elaborei um esboço de diagrama de classes para auxiliar no desenvolvimento do exercício proposto. Segue abaixo o esboço do diagrama de classe:
 ![](https://i.imgur.com/eSeH66O.png)
 
+____
+###### Como executar:
+___
+
+Para o exercício 2 foi solicitado que o resultado fosse executado e exibido no console. Como o projeto foi implementado com Spring Boot foi necessário adicionar o runner de command line do spring boot, podendo o mesmo ser executado seguindo os seguintes passo:
+- No console, será necessário navegar até a pasta raíz do projeto e executar o comando:
+`gradlew.bat clean bootRun`, conforme imagem:
+![](https://i.imgur.com/2cxYMsO.jpg)
+- Ao executar o resultado deverá ser parecido com o da imagem abaixo:
+![](https://i.imgur.com/DM6tAlk.jpg)
+- Também é possível executarmos os testes unitários da aplicação através da linha de comando executando a linha seguinte: `gradlew.bat clean test --info`, conforme imagem abaixo:
+![](https://i.imgur.com/ZmEob28.jpg)
+- Teremos como resultado a imagem abaixo:
+![](https://i.imgur.com/Nt95XHP.jpg)
+
+_____
+
+###### Anotações:
+______
 Como no exercício 1 vou elencando as atividades que vou executando na medida que eu as faço.
 -  Para iniciar o desenvolvimento da aplicação é necessário definir qual lógica devo validar primeiro. Observando o diagrama acima decidi iniciar os testes pela classe `ItemComposicao.java`, realizando testes no método `getValor()`. Para isso, será necessário *mockar* o objeto *Item* e seu método `getValorUnitario()` que será testado posteriormente.
+
 - Com a classe `ItemComposicao.java` testada, podemos iniciar os testes das classes concretas de `Item.java`: `Insumo.java` e `Composicao.java`. Ao final da criação e execução dos testes dessas classes já deveremos possuir todas as classes do pacote `br.com.softplan.avaliacao.exercicio2.model` implementadas.
+
+- **Uma observação importante referente ao desenvolvimento das funcionalidades, principalmente as responsáveis pelos cálculos dos valores, foi a necessiade da criação de uma classe utilitária para o tratamento dos valores `double` com a finalidade de ter um maior controle sobre os retornos das suas casas decimais.**
+
+- Após a finalização dos testes e implementação das funcionalidades do pacote `br.com.softplan.avaliacao.exercicio2.model`, será construído os testes da classe de factory de **Item**: `ItemFactory.java`. Essa classe foi pensada utilizando o padrão **factory**, ficando responsável da criação do **Item** de acordo com o seu tipo.
+
+- Com a finalidade de otimizar e melhorar a organização dos dados, pensei na criação de repositorios para guardar e recuperar os **Insumos** e **Composições** evitando objetos duplicados na memória.
+
+- Este factory será utilizado na classe de serviço com o objetivo de instanciar a classe correta de acordo com o tipoItem informado no JSON de dados.
+
+- Após finalizar os teste e implementações do ItemFactory farei os testes para os repositórios, mesmo não fazendo parte do escopo do projeto. Estes repositórios seram apenas Maps para armazenar os dados em memória.
+
+- FInalizando o exercício 2, vou implementar a lógica da conversão dos dados de entrada existentes no JSON **[dados-entrada-servicos-composicao.json](https://drive.google.com/open?id=1V7CtZBMb7YN6snSVMbMNqAGlY0T8Q2lV)** para a estrutura previamente criada e finalizar realizando a chamada da lógica e exibindo os dados no console.
+
+- Para esta etapa implementarei um service que será responsável pela conversão dos dados contidos no JSON em um DTO e, em seguida, a conversão do DTO na estrutura previamente implementada. Utilizando os princípios do TDD os testes para a lógica proposta para o service, sendo estes testes utilizando a estrutura do Spring framework, simulando assim o teste de toda as camadas envolvidas.
+
+- Realizando os testes finais percebi que os dados contidos na planilha estão realizando um arredondamento que não consegui identificar como é feito, pois, mesmo fazendo as contas manualmente, não consegui chegar no valor. Tendo variações de centavos.
+
+- Após finalizar os testes e implementações a cobertura de testes do execício 2 ficou conforme imagem abaixo:
+![](https://i.imgur.com/pRLBN1x.jpg)

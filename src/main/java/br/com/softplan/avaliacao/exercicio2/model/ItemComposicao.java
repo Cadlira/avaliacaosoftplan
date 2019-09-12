@@ -2,6 +2,12 @@ package br.com.softplan.avaliacao.exercicio2.model;
 
 import java.util.Objects;
 
+/**
+ * Classe que mantem os dados do item na composição e a quantidade desses itens
+ * 
+ * @author leonardo.lira
+ *
+ */
 public class ItemComposicao {
 
 	private Item item;
@@ -30,10 +36,17 @@ public class ItemComposicao {
 		this.quantidade = quantidade;
 	}
 
+	/**
+	 * Calcula o valor do itemComposicao multiplicando a quantidade e o valor do item
+	 * 
+	 * @return valor calculado
+	 */
 	public double getValor() {
+		// caso o item seja nulo o resultado será 0
 		if (Objects.isNull(item)) {
-			return 0f;
+			return 0d;
 		}
+		
 		return item.getValorUnitario() * this.getQuantidade();
 	}
 

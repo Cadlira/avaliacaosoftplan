@@ -1,6 +1,8 @@
 package br.com.softplan.avaliacao.exercicio2.model;
 
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -8,7 +10,15 @@ import org.springframework.util.CollectionUtils;
 
 import br.com.softplan.avaliacao.exercicio2.Util.DoubleUtil;
 
+/**
+ * Classe responsável por manter um composição e suas regras de negócio
+ * 
+ * @author leonardo.lira
+ *
+ */
 public class Composicao extends Item {
+
+	private static NumberFormat numberFormat = NumberFormat.getInstance(new Locale("pt", "BR"));
 
 	private Set<ItemComposicao> itens;
 
@@ -22,19 +32,35 @@ public class Composicao extends Item {
 		this.itens = itens;
 	}
 
-	@Override
-	protected double getValorUnitario() {
+	public Composicao() {
+		super();
+	}
 
+	@Override
+	public double getValorUnitario() {
+		// Caso a composição não tenha itensComposicao o valor unitário será 0
 		if (CollectionUtils.isEmpty(this.itens)) {
 			return 0d;
 		}
 
-		return DoubleUtil.round(this.itens.stream().filter(item -> item.getItem().getCodigo() != this.getCodigo())
-				.mapToDouble(item -> item.getValor()).sum(), 5);
+		/*
+		 * Aqui é aplicada a lógica para calcular o valor da composição
+		 * 
+		 * o valor da composição é calculada somando os valores de cada itemComposicao
+		 * 
+		 * Fora isso, foi adicionada uma lógica para evitar loop infinito caso um dos
+		 * itens da composição seja ela mesma, fazendo que não seja chamado o método
+		 * getValor() do itemComposicao, caso o item seja ele mesmo
+		 */
+		return DoubleUtil.round(this.itens.stream()
+				.filter(item -> (TipoItem.INSUMO.equals(item.getItem().getTipo())
+						|| (item.getItem().getCodigo() != this.getCodigo()
+								&& TipoItem.COMPOSICAO.equals(item.getItem().getTipo()))))
+				.mapToDouble(item -> item.getValor()).sum(), 2);
 	}
 
 	@Override
-	protected TipoItem getTipo() {
+	public TipoItem getTipo() {
 		return TipoItem.COMPOSICAO;
 	}
 
@@ -42,6 +68,11 @@ public class Composicao extends Item {
 		return this.itens;
 	}
 
+	/**
+	 * Adiciona um novo item na composição
+	 * 
+	 * @param item composição para ser armazenada
+	 */
 	public void addItem(ItemComposicao item) {
 		if (Objects.nonNull(item)) {
 			if (Objects.isNull(this.itens)) {
@@ -50,6 +81,12 @@ public class Composicao extends Item {
 			this.itens.add(item);
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%d   %s   %s   %s", this.getCodigo(), this.getDescricao(), this.getUnidade().name(),
+				numberFormat.format(this.getValorUnitario()));
 	}
 
 }
