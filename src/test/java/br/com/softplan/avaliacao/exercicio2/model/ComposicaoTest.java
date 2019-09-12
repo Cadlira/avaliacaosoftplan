@@ -2,6 +2,8 @@ package br.com.softplan.avaliacao.exercicio2.model;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.text.NumberFormat;
+import java.util.Locale;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -121,5 +123,20 @@ public class ComposicaoTest {
 				+ item3.getValor() + this.composicaoComItensVazio.getValorUnitario() * 2, 5));
 		assertThat(this.composicaoComItens.getValorUnitario())
 				.isEqualTo(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1) + (((15.19*2)+(20.33*3))*2), 5));
+	}
+	
+	@Test
+	public void exibir_toString_da_composicao_com_itens() {
+		StringBuilder valorVerificacao = new StringBuilder();
+		
+		NumberFormat numberFormat = NumberFormat.getInstance(new Locale("pt", "BR"));
+		
+		valorVerificacao.append(94793).append("   ")
+		.append("REGISTRO DE GAVETA BRUTO, LATÃO, ROSCÁVEL, 1 1/4, COM ACABAMENTO E CANOPLA CROMADOS, INSTALADO EM RESERVAÇÃO DE ÁGUA DE EDIFICAÇÃO QUE POSSUA RESERVATÓRIO DE FIBRA/FIBROCIMENTO FORNECIMENTO E INSTALAÇÃO. AF_06/2016").append("   ")
+		.append(Unidade.UN.name()).append("   ")
+		.append(numberFormat.format(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1), 2)));
+		
+		assertThat(this.composicaoComItens.toString()).isEqualTo(valorVerificacao.toString());
+		
 	}
 }

@@ -4,13 +4,17 @@ public class Insumo extends Item {
 
 	private double valorUnitario;
 	
+	public Insumo() {
+		super();
+	}
+
 	public Insumo(int codigo, String descricao, Unidade unidade, double valor) {
 		super(codigo, descricao, unidade);
 		this.valorUnitario = valor;
 	}
 
 	@Override
-	protected double getValorUnitario() {
+	public double getValorUnitario() {
 		return this.valorUnitario;
 	}
 
@@ -19,7 +23,7 @@ public class Insumo extends Item {
 	}
 
 	@Override
-	protected TipoItem getTipo() {
+	public TipoItem getTipo() {
 		return TipoItem.INSUMO;
 	}
 

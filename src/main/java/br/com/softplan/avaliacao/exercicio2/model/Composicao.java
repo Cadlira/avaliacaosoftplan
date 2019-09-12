@@ -1,6 +1,8 @@
 package br.com.softplan.avaliacao.exercicio2.model;
 
+import java.text.NumberFormat;
 import java.util.HashSet;
+import java.util.Locale;
 import java.util.Objects;
 import java.util.Set;
 
@@ -9,6 +11,8 @@ import org.springframework.util.CollectionUtils;
 import br.com.softplan.avaliacao.exercicio2.Util.DoubleUtil;
 
 public class Composicao extends Item {
+
+	private static NumberFormat numberFormat = NumberFormat.getInstance(new Locale("pt", "BR"));
 
 	private Set<ItemComposicao> itens;
 
@@ -22,19 +26,26 @@ public class Composicao extends Item {
 		this.itens = itens;
 	}
 
+	public Composicao() {
+		super();
+	}
+
 	@Override
-	protected double getValorUnitario() {
+	public double getValorUnitario() {
 
 		if (CollectionUtils.isEmpty(this.itens)) {
 			return 0d;
 		}
 
-		return DoubleUtil.round(this.itens.stream().filter(item -> item.getItem().getCodigo() != this.getCodigo())
+		return DoubleUtil.round(this.itens.stream()
+				.filter(item -> (TipoItem.INSUMO.equals(item.getItem().getTipo())
+						|| (item.getItem().getCodigo() != this.getCodigo()
+								&& TipoItem.COMPOSICAO.equals(item.getItem().getTipo()))))
 				.mapToDouble(item -> item.getValor()).sum(), 5);
 	}
 
 	@Override
-	protected TipoItem getTipo() {
+	public TipoItem getTipo() {
 		return TipoItem.COMPOSICAO;
 	}
 
@@ -50,6 +61,12 @@ public class Composicao extends Item {
 			this.itens.add(item);
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%d   %s   %s   %s", this.getCodigo(), this.getDescricao(), this.getUnidade().name(),
+				numberFormat.format(DoubleUtil.round(this.getValorUnitario(), 2)));
 	}
 
 }

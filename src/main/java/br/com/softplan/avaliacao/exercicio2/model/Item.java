@@ -5,6 +5,8 @@ public abstract class Item {
 	private int codigo;
 	private String descricao;
 	private Unidade unidade;
+	
+	public Item() {}
 
 	public Item(int codigo, String descricao, Unidade unidade) {
 		super();
@@ -37,9 +39,9 @@ public abstract class Item {
 		this.unidade = unidade;
 	}
 
-	protected abstract double getValorUnitario();
+	public abstract double getValorUnitario();
 	
-	protected abstract TipoItem getTipo();
+	public abstract TipoItem getTipo();
 
 	@Override
 	public int hashCode() {

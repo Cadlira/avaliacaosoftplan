@@ -67,4 +67,15 @@ Levantado as pré condições, elaborei um esboço de diagrama de classes para a
 
 Como no exercício 1 vou elencando as atividades que vou executando na medida que eu as faço.
 -  Para iniciar o desenvolvimento da aplicação é necessário definir qual lógica devo validar primeiro. Observando o diagrama acima decidi iniciar os testes pela classe `ItemComposicao.java`, realizando testes no método `getValor()`. Para isso, será necessário *mockar* o objeto *Item* e seu método `getValorUnitario()` que será testado posteriormente.
+
 - Com a classe `ItemComposicao.java` testada, podemos iniciar os testes das classes concretas de `Item.java`: `Insumo.java` e `Composicao.java`. Ao final da criação e execução dos testes dessas classes já deveremos possuir todas as classes do pacote `br.com.softplan.avaliacao.exercicio2.model` implementadas.
+
+- **Uma observação importante referente ao desenvolvimento das funcionalidades, principalmente as responsáveis pelos cálculos dos valores, foi a necessiade da criação de uma classe utilitária para o tratamento dos valores `double` com a finalidade de ter um maior controle sobre os retornos das suas casas decimais.**
+
+- Após a finalização dos testes e implementação das funcionalidades do pacote `br.com.softplan.avaliacao.exercicio2.model`, será construído os testes da classe de factory de **Item**: `ItemFactory.java`. Essa classe foi pensada utilizando o padrão **factory**, ficando responsável da criação do **Item** de acordo com o seu tipo.
+
+- Com a finalidade de otimizar e melhorar a organização dos dados, pensei na criação de repositorios para guardar e recuperar os **Insumos** e **Composições** evitando objetos duplicados na memória.
+
+- Este factory será utilizado na classe de serviço com o objetivo de instanciar a classe correta de acordo com o tipoItem informado no JSON de dados.
+
+- Após finalizar os teste e implementações do ItemFactory farei os testes para os repositórios, mesmo não fazendo parte do escopo do projeto. Estes repositórios seram apenas Maps para armazenar os dados em memória.
