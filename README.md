@@ -9,6 +9,12 @@ dependência e padrões de projeto como o Strategy ou factory.
 
 O projeto em si foi dividido em dois pacotes com o objetivo de separar os dois exercícios propostos, e dentro desses pacotes foram criados outros pacotes de forma a haver uma separação mais clara entre as camadas de cada exercício.
 
+O código está no repositório compartilhado, sendo que cada exercício está em uma branch separada:
+- Exercicio 01 na branch `exercicio1`
+- Exercicio 02 na branch `exercicio2`
+
+Na branch master estão os dois exercício no projeto.
+
 -----
 ##### Exercício 1
 -----
@@ -16,6 +22,27 @@ Nesse exercício foi proposto adicionar um novo comportamento a uma classe já e
 Com o intuito de ajudar na visualização da arquitetura e implementação da solução, resolvi criar um esboço de diagrama de classe, como pode ser visto abaixo:
 
 ![](https://i.imgur.com/z5rCL7z.png)
+
+____
+###### Como executar:
+___
+
+Para o exercício 1 não foi especificado nenhuma forma de execução, contudo decidi exibir o resultado no console da mesma forma que o exercício 2.
+Como o projeto foi implementado com Spring Boot foi necessário adicionar o runner de command line do spring boot, podendo o mesmo ser executado seguindo os seguintes passo:
+- No console, será necessário navegar até a pasta raíz do projeto e executar o comando:
+`gradlew.bat clean bootRun`, conforme imagem:
+![](https://i.imgur.com/2cxYMsO.jpg)
+- Ao executar o resultado deverá ser parecido com o da imagem abaixo:
+![](https://i.imgur.com/fQ1IsUW.jpg)
+- Também é possível executarmos os testes unitários da aplicação através da linha de comando executando a linha seguinte: `gradlew.bat clean test --info`, conforme imagem abaixo:
+![](https://i.imgur.com/ZmEob28.jpg)
+- Teremos como resultado a imagem abaixo:
+![](https://i.imgur.com/Nt95XHP.jpg)
+
+_____
+
+###### Anotações:
+______
 
 Para a implementação da solução proposta ao requisito levantado segui os passos abaixo, utilizando, sempre que possível, as melhores práticas do TDD e dos princípios de orientação a objeto.
 - Como já tinhamos uma classe com um comportamento pré existente, resolvi criar inicialmente uma classe para testar todos os comportamentos previstos na mesma: `br.com.softplan.avaliacao.exercicio1.service.relatorio.observacao.GeradorObservacaoTest`. Com a classe implementada copiei o arquivo passado por vocês [GeradorObservação.java](https://drive.google.com/open?id=1pq8UFR0VKeFCmidKw5z-2g-duSPGLtbs) com o objetivo de fazer com que os testes criados passassem.

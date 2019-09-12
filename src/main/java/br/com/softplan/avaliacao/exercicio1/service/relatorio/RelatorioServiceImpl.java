@@ -9,6 +9,12 @@ import org.springframework.stereotype.Service;
 import br.com.softplan.avaliacao.exercicio1.service.factory.GeradorObservacaoFactory;
 import br.com.softplan.avaliacao.exercicio1.service.relatorio.observacao.VersaoGerador;
 
+/**
+ * Classe concreta para o serviço de relatório
+ * 
+ * @author leonardo.lira
+ * 
+ */ 
 @Service
 public class RelatorioServiceImpl implements RelatorioService {
 
@@ -20,6 +26,11 @@ public class RelatorioServiceImpl implements RelatorioService {
 		if (Objects.isNull(versaoGeradorObservacao)) {
 			versaoGeradorObservacao = VersaoGerador.V1;	
 		}
+		
+		/*
+		 *  utilizar o mecanismo de localização de bean do spring para selecionar a implementação correta
+		 *  do gerador de observação
+		 */	
 		return this.geradorObservacaoFactory.getGeradorObservacao(versaoGeradorObservacao.getBeanName())
 				.geraObservacao(lista);
 	}

@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import br.com.softplan.avaliacao.exercicio1.model.NotaFiscal;
 
+/**
+ * Classe concreta do repostório de notas fiscais
+ * 
+ * @author leonardo.lira
+ *
+ */
 @Repository("notaFiscalRepository")
 public class NotaFiscalRepositoryImpl implements NotaFiscalRepository {
 
@@ -20,6 +26,7 @@ public class NotaFiscalRepositoryImpl implements NotaFiscalRepository {
 		this.DB.put(4, new NotaFiscal(4, 1500.00f));
 		this.DB.put(5, new NotaFiscal(5, 0.30f));
 	}
+	
 	
 	@Override
 	public Optional<NotaFiscal> findByNumero(int numeroNota) {		

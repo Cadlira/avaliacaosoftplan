@@ -4,6 +4,13 @@ import java.util.List;
 
 import org.springframework.util.CollectionUtils;
 
+/**
+ * Classe abstrata para centralizar as logicas comuns das 
+ * classes geradoras de observacao
+ * 
+ * @author leonardo.lira
+ *
+ */
 public abstract class GeradorObservacaoInterface {
 
 	// Gera observações, com texto pre-definido, incluindo os números, das notas
