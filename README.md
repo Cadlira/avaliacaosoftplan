@@ -9,7 +9,7 @@ dependência e padrões de projeto como o Strategy ou factory.
 
 O projeto em si foi dividido em dois pacotes com o objetivo de separar os dois exercícios propostos, e dentro desses pacotes foram criados outros pacotes de forma a haver uma separação mais clara entre as camadas de cada exercício.
 
-
+-----
 ##### Exercício 1
 -----
 Nesse exercício foi proposto adicionar um novo comportamento a uma classe já existente, mantendo, contudo, o comportamento anterior. Para isso, foi necessário propor em um solução que atendesse a esse requisito. Desta forma, decidi criar uma abstração para a classe já existente (interface ou classe abstrata) e criar uma nova classe para atender o novo comportamento, utilizando como base o padrão strategy para responder a esse requisito.
@@ -53,3 +53,18 @@ if (!CollectionUtils.isEmpty(lista))  {
 - Finalizando a implementação desse exercício construi uma classe de *testSuite* para o exercício 1 `br.com.softplan.avaliacao.exercicio1.Exercicio1TestSuite.java` e executando a mesmo foi retornado um valor de cobertura de 97,3%, conforme imagem abaixo:
 ![](https://i.imgur.com/iZEnjEo.jpg)
 - O código do exercício 1 encontra-se no repositório compartilhado com vocês na branch ***exercicio1***. O código dos dois exercícios estaram implementado na branch ***master***.
+
+-----
+##### Exercício 2
+-----
+No exercício 2 foi apresentado um problema no qual era necessário a leitura de um conjunto de dados de entrada em um formato específico para seguinte tratamento e exibição.
+O conjunto de dados foi entregue no formato JSON, cujo o arquivo entregue foi o [dados-entrada-servicos-composicao.json](https://drive.google.com/open?id=1V7CtZBMb7YN6snSVMbMNqAGlY0T8Q2lV).
+
+Normalmente seria criado um DTO responsável pela conversão do JSON para java na camada de apresentação (camada da API REST, por exemplo), passando para a camada de negócio o objeto reconhecido pela mesma. Contudo, como não faz parte do escopo desse exercício a camada de apresentação e, há também a solicitação de uma melhor solução para o tratamento e exibição dos dados informados no arquivo, a carga do mesmo será realizado no services da aplicação.
+
+Levantado as pré condições, elaborei um esboço de diagrama de classes para auxiliar no desenvolvimento do exercício proposto. Segue abaixo o esboço do diagrama de classe:
+![](https://i.imgur.com/eSeH66O.png)
+
+Como no exercício 1 vou elencando as atividades que vou executando na medida que eu as faço.
+-  Para iniciar o desenvolvimento da aplicação é necessário definir qual lógica devo validar primeiro. Observando o diagrama acima decidi iniciar os testes pela classe `ItemComposicao.java`, realizando testes no método `getValor()`. Para isso, será necessário *mockar* o objeto *Item* e seu método `getValorUnitario()` que será testado posteriormente.
+- Com a classe `ItemComposicao.java` testada, podemos iniciar os testes das classes concretas de `Item.java`: `Insumo.java` e `Composicao.java`. Ao final da criação e execução dos testes dessas classes já deveremos possuir todas as classes do pacote `br.com.softplan.avaliacao.exercicio2.model` implementadas.
