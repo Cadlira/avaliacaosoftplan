@@ -99,18 +99,18 @@ public class ComposicaoTest {
 	@Test
 	public void calcular_valorUnitario_composicao() {
 		assertThat(this.composicaoComItens.getValorUnitario())
-				.isEqualTo(this.item1.getValor() + item2.getValor() + item3.getValor());
+				.isEqualTo(DoubleUtil.round(this.item1.getValor() + item2.getValor() + item3.getValor(), 2));
 		assertThat(this.composicaoComItens.getValorUnitario())
-				.isEqualTo((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1));
+				.isEqualTo(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1), 2));
 	}
 
 	@Test
 	public void calcular_valorUnitario_composicao_ignorando_referencia_ciclica() {
 		((Composicao) this.composicaoComItens).addItem(new ItemComposicao(composicaoComItens, 2));
 		assertThat(this.composicaoComItens.getValorUnitario())
-				.isEqualTo(this.item1.getValor() + item2.getValor() + item3.getValor());
+				.isEqualTo(DoubleUtil.round(this.item1.getValor() + item2.getValor() + item3.getValor(), 2));
 		assertThat(this.composicaoComItens.getValorUnitario())
-				.isEqualTo((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1));
+				.isEqualTo(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1), 2));
 	}
 
 	@Test
@@ -120,9 +120,9 @@ public class ComposicaoTest {
 		((Composicao) this.composicaoComItens).addItem(new ItemComposicao(composicaoComItensVazio, 2));
 
 		assertThat(this.composicaoComItens.getValorUnitario()).isEqualTo(DoubleUtil.round(this.item1.getValor() + item2.getValor()
-				+ item3.getValor() + this.composicaoComItensVazio.getValorUnitario() * 2, 5));
+				+ item3.getValor() + this.composicaoComItensVazio.getValorUnitario() * 2, 2));
 		assertThat(this.composicaoComItens.getValorUnitario())
-				.isEqualTo(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1) + (((15.19*2)+(20.33*3))*2), 5));
+				.isEqualTo(DoubleUtil.round((15.19 * 0.7890000) + (20.33 * 0.7890000) + (100.41 * 1) + (((15.19*2)+(20.33*3))*2), 2));
 	}
 	
 	@Test

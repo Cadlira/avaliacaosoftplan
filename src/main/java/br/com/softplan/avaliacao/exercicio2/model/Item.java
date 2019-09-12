@@ -1,5 +1,11 @@
 package br.com.softplan.avaliacao.exercicio2.model;
 
+/**
+ * Classe abstrata que mantem as regras de negócio comuns dos itens
+ * 
+ * @author leonardo.lira
+ *
+ */
 public abstract class Item {
 	
 	private int codigo;

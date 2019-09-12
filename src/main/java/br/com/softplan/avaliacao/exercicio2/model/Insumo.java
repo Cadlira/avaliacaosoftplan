@@ -1,5 +1,11 @@
 package br.com.softplan.avaliacao.exercicio2.model;
 
+/**
+ * Classe responsável por manter um insumo e suas regras de negócio
+ * 
+ * @author leonardo.lira
+ *
+ */
 public class Insumo extends Item {
 
 	private double valorUnitario;

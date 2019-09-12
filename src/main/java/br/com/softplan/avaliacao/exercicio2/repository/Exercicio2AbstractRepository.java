@@ -7,8 +7,17 @@ import java.util.Optional;
 
 import br.com.softplan.avaliacao.exercicio2.model.Item;
 
+/**
+ * Classe abstrata para os repositórios dos itens, tanto composição e insumo
+ * 
+ * Essa classe centraliza os códigos comuns para os repositórios dos dois tipos
+ * 
+ * @author leonardo.lira
+ *
+ * @param <T> Tipo do Item
+ */
 public abstract class Exercicio2AbstractRepository<T extends Item> implements Exercicio2Repository<T> {
-
+	
 	@Override
 	public Optional<T> findByCodigo(int codigo) {
 		return Optional.ofNullable(this.getItens().get(codigo));
@@ -27,5 +36,10 @@ public abstract class Exercicio2AbstractRepository<T extends Item> implements Ex
 		return this.getItens().values();
 	}
 	
+	/**
+	 * Retorno o map dos itens que serve como repositório
+	 * 
+	 * @return
+	 */
 	protected abstract Map<Integer, T> getItens();
 }

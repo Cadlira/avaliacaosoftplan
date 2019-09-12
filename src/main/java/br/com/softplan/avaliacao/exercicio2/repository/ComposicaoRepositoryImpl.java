@@ -8,6 +8,12 @@ import org.springframework.stereotype.Repository;
 
 import br.com.softplan.avaliacao.exercicio2.model.Composicao;
 
+/**
+ * Classe concreta para o repositório de composição
+ * 
+ * @author leonardo.lira
+ *
+ */
 @Repository
 public class ComposicaoRepositoryImpl extends Exercicio2AbstractRepository<Composicao> implements ComposicaoRepository {
 
