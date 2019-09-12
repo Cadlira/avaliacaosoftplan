@@ -1,5 +1,11 @@
 package br.com.softplan.avaliacao.exercicio1.model;
 
+/**
+ * Classe responsável por armazenar os dados da nota fiscal
+ * 
+ * @author leonardo.lira
+ *
+ */
 public class NotaFiscal {
 	private int numero;
 	
