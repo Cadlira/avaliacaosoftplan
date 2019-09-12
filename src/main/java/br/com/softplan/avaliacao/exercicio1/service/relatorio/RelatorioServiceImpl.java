@@ -13,8 +13,8 @@ import br.com.softplan.avaliacao.exercicio1.service.relatorio.observacao.VersaoG
  * Classe concreta para o serviço de relatório
  * 
  * @author leonardo.lira
- *
- */
+ * 
+ */ 
 @Service
 public class RelatorioServiceImpl implements RelatorioService {
 
