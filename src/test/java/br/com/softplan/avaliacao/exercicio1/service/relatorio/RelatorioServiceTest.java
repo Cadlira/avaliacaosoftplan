@@ -36,6 +36,21 @@ public class RelatorioServiceTest {
 	}
 	
 	@Test
+	public void gerar_observacao_com_apenas_uma_nota_e_gerador_null() throws Exception {
+		String resultado = this.relatorioService.geraObservacao(Arrays.asList(1), null);
+		
+		assertThat(resultado).isEqualTo("Fatura da nota fiscal de simples remessa: 1.");
+	}
+	
+	@Test
+	public void gerar_observacao_com_mais_de_uma_nota_e_gerador_null() throws Exception {
+		
+		String resultado = this.relatorioService.geraObservacao(Arrays.asList(1,2,3,4,5), null);
+		
+		assertThat(resultado).isEqualTo("Fatura das notas fiscais de simples remessa: 1, 2, 3, 4 e 5.");
+	}
+	
+	@Test
 	public void gerar_observacao_com_lista_vazia_gerador_V1() throws Exception {
 		String resultado = this.relatorioService.geraObservacao(new ArrayList<Integer>(), VersaoGerador.V1);
 		

@@ -1,16 +1,10 @@
 package br.com.softplan.avaliacao;
 
-import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.runners.Suite;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class AvaliacaoSoftplanApplicationTests {
+import br.com.softplan.avaliacao.exercicio1.Exercicio1TestSuite;
 
-	@Test
-	public void contextLoads() {
-	}
-
-}
+@RunWith(Suite.class)
+@Suite.SuiteClasses({ Exercicio1TestSuite.class })
+public class AvaliacaoSoftplanApplicationTests {}
